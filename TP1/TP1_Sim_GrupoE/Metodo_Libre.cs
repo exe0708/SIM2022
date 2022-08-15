@@ -6,6 +6,8 @@ using TP1_Sim_GrupoE.Clases;
 
 namespace TP1_Sim_GrupoE
 {
+    
+
     public partial class Metodo_Libre : Form
     {
         private static int x;
@@ -21,7 +23,7 @@ namespace TP1_Sim_GrupoE
         private List<NumeroAleatorio> listaAleatorios { get; set; }
         private List<Double> listaRandom = new List<double>();
         private List<Frecuencia> listaFrecuenciaTabla = new List<Frecuencia>();
-        private List<Frecuencia> listaFrecuenciaGrafico = new List<Frecuencia>();
+        public static List<Frecuencia> listaFrecuenciaGrafico = new List<Frecuencia>();
 
         public Metodo_Libre()
         {
@@ -64,6 +66,8 @@ namespace TP1_Sim_GrupoE
             }
             dg_libre.DataSource = null;
             dg_libre.DataSource = listaAleatorios;
+            calcularIntervalos();
+
         }
         private void btn_limpiar_libre_Click(object sender, EventArgs e)
         {
@@ -79,26 +83,28 @@ namespace TP1_Sim_GrupoE
                 {
                     case 0:
                         listaAleatorios.Add(congruencialMixto(listaAleatorios.Count));
-                        listaRandom.Add(listaAleatorios[listaAleatorios.Count].random);
+                        listaRandom.Add(listaAleatorios[listaAleatorios.Count-1].random);
                         break;
                     case 1:
                         listaAleatorios.Add(congruencialMultiplicativo(listaAleatorios.Count));
-                        listaRandom.Add(listaAleatorios[listaAleatorios.Count].random);
+                        listaRandom.Add(listaAleatorios[listaAleatorios.Count-1].random);
                         break;
                     case 2:
                         listaAleatorios.Add(congruencialAditivo(listaAleatorios.Count));
-                        listaRandom.Add(listaAleatorios[listaAleatorios.Count].random);
+                        listaRandom.Add(listaAleatorios[listaAleatorios.Count-1].random);
                         break;
                 }
 
             }
             dg_libre.DataSource = null;
             dg_libre.DataSource = listaAleatorios;
+            calcularIntervalos();
         }
 
         private void btn_ultimo_libre_Click(object sender, EventArgs e)
         {
             listaAleatorios = new List<NumeroAleatorio>();
+            listaRandom = new List<double>();
             List<NumeroAleatorio> ultimoElemento = new List<NumeroAleatorio>();
             for (int i = 0; i < 10000; i++)
             {
@@ -146,6 +152,7 @@ namespace TP1_Sim_GrupoE
             if (chk_incluir1_libre.Checked)
                 incluir1_libre = 1;
             // Crea la lista vacia de numeros aleatorios que necesitamos mostrar
+            listaRandom = new List<double>();
             listaAleatorios = new List<NumeroAleatorio>();
 
         }
@@ -259,6 +266,7 @@ namespace TP1_Sim_GrupoE
             chk_incluir1_libre.Checked = false;
             cmb_metodo.SelectedIndex = -1;
             dg_libre.DataSource = null;
+            dg_intervalos.DataSource = null;
             condcionesIniciales();
         }
         private void habilitarBotonesCalcular(bool band)
@@ -347,6 +355,13 @@ namespace TP1_Sim_GrupoE
 
             //lblSumChi.Text = "La sumatoria de Chi Cuadrado es: " + sumChi;
 
+        }
+
+        
+        private void btn_graficar_libre_Click(object sender, EventArgs e)
+        {
+            chi chi = new chi();
+            chi.Show();
         }
     }
 }

@@ -178,6 +178,7 @@ namespace TP1_Sim_GrupoE
             this.btn_graficar_libre.TabIndex = 20;
             this.btn_graficar_libre.Text = "Graficar";
             this.btn_graficar_libre.UseVisualStyleBackColor = true;
+            this.btn_graficar_libre.Click += new System.EventHandler(this.btn_graficar_libre_Click);
             // 
             // btn_calcular_libre
             // 
@@ -313,11 +314,11 @@ namespace TP1_Sim_GrupoE
             // 
             this.gb_generados_sugeridos.BackColor = System.Drawing.Color.DarkSalmon;
             this.gb_generados_sugeridos.Controls.Add(this.dg_libre);
-            this.gb_generados_sugeridos.Location = new System.Drawing.Point(705, 7);
+            this.gb_generados_sugeridos.Location = new System.Drawing.Point(411, 18);
             this.gb_generados_sugeridos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gb_generados_sugeridos.Name = "gb_generados_sugeridos";
             this.gb_generados_sugeridos.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gb_generados_sugeridos.Size = new System.Drawing.Size(540, 299);
+            this.gb_generados_sugeridos.Size = new System.Drawing.Size(449, 299);
             this.gb_generados_sugeridos.TabIndex = 9;
             this.gb_generados_sugeridos.TabStop = false;
             this.gb_generados_sugeridos.Text = "Valores Generados";
@@ -330,18 +331,18 @@ namespace TP1_Sim_GrupoE
             this.dg_libre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dg_libre.Name = "dg_libre";
             this.dg_libre.RowHeadersWidth = 51;
-            this.dg_libre.Size = new System.Drawing.Size(527, 276);
+            this.dg_libre.Size = new System.Drawing.Size(434, 276);
             this.dg_libre.TabIndex = 7;
             // 
             // gb_grafico_libre
             // 
             this.gb_grafico_libre.BackColor = System.Drawing.Color.DarkSalmon;
             this.gb_grafico_libre.Controls.Add(this.dg_intervalos);
-            this.gb_grafico_libre.Location = new System.Drawing.Point(705, 310);
+            this.gb_grafico_libre.Location = new System.Drawing.Point(411, 325);
             this.gb_grafico_libre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gb_grafico_libre.Name = "gb_grafico_libre";
             this.gb_grafico_libre.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gb_grafico_libre.Size = new System.Drawing.Size(540, 299);
+            this.gb_grafico_libre.Size = new System.Drawing.Size(474, 299);
             this.gb_grafico_libre.TabIndex = 10;
             this.gb_grafico_libre.TabStop = false;
             this.gb_grafico_libre.Text = "Intervalos";
@@ -365,7 +366,7 @@ namespace TP1_Sim_GrupoE
             this.dg_intervalos.Margin = new System.Windows.Forms.Padding(4);
             this.dg_intervalos.Name = "dg_intervalos";
             this.dg_intervalos.RowHeadersWidth = 51;
-            this.dg_intervalos.Size = new System.Drawing.Size(527, 276);
+            this.dg_intervalos.Size = new System.Drawing.Size(454, 276);
             this.dg_intervalos.TabIndex = 8;
             // 
             // Metodo_Libre
@@ -373,7 +374,7 @@ namespace TP1_Sim_GrupoE
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::TP1_Sim_GrupoE.Properties.Resources.e8563feb6e4cb710fd9b22e8b11ef6be;
-            this.ClientSize = new System.Drawing.Size(1261, 618);
+            this.ClientSize = new System.Drawing.Size(1469, 633);
             this.Controls.Add(this.gb_grafico_libre);
             this.Controls.Add(this.gb_generados_sugeridos);
             this.Controls.Add(this.groupBox1);

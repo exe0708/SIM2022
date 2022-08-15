@@ -29,6 +29,10 @@ namespace TP1_Sim_GrupoE
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.gb_parametros_chi = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_testchi = new System.Windows.Forms.Button();
@@ -37,8 +41,6 @@ namespace TP1_Sim_GrupoE
             this.txt_significancia = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmb_intervalos_chi = new System.Windows.Forms.ComboBox();
-            this.gb_iteraciones = new System.Windows.Forms.GroupBox();
-            this.dg_iteraciones_chi = new System.Windows.Forms.DataGridView();
             this.gb_chi = new System.Windows.Forms.GroupBox();
             this.txt_hipotesis = new System.Windows.Forms.Label();
             this.txt_xtabulado = new System.Windows.Forms.Label();
@@ -46,10 +48,10 @@ namespace TP1_Sim_GrupoE
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.grafico = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.gb_parametros_chi.SuspendLayout();
-            this.gb_iteraciones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_iteraciones_chi)).BeginInit();
             this.gb_chi.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grafico)).BeginInit();
             this.SuspendLayout();
             // 
             // gb_parametros_chi
@@ -63,9 +65,9 @@ namespace TP1_Sim_GrupoE
             this.gb_parametros_chi.Controls.Add(this.label5);
             this.gb_parametros_chi.Controls.Add(this.cmb_intervalos_chi);
             this.gb_parametros_chi.Location = new System.Drawing.Point(32, 26);
-            this.gb_parametros_chi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gb_parametros_chi.Margin = new System.Windows.Forms.Padding(4);
             this.gb_parametros_chi.Name = "gb_parametros_chi";
-            this.gb_parametros_chi.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gb_parametros_chi.Padding = new System.Windows.Forms.Padding(4);
             this.gb_parametros_chi.Size = new System.Drawing.Size(325, 134);
             this.gb_parametros_chi.TabIndex = 0;
             this.gb_parametros_chi.TabStop = false;
@@ -84,7 +86,7 @@ namespace TP1_Sim_GrupoE
             // btn_testchi
             // 
             this.btn_testchi.Location = new System.Drawing.Point(217, 47);
-            this.btn_testchi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_testchi.Margin = new System.Windows.Forms.Padding(4);
             this.btn_testchi.Name = "btn_testchi";
             this.btn_testchi.Size = new System.Drawing.Size(100, 48);
             this.btn_testchi.TabIndex = 16;
@@ -94,7 +96,7 @@ namespace TP1_Sim_GrupoE
             // txt_gradoslibertad
             // 
             this.txt_gradoslibertad.Location = new System.Drawing.Point(8, 89);
-            this.txt_gradoslibertad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_gradoslibertad.Margin = new System.Windows.Forms.Padding(4);
             this.txt_gradoslibertad.Name = "txt_gradoslibertad";
             this.txt_gradoslibertad.Size = new System.Drawing.Size(64, 22);
             this.txt_gradoslibertad.TabIndex = 13;
@@ -112,7 +114,7 @@ namespace TP1_Sim_GrupoE
             // txt_significancia
             // 
             this.txt_significancia.Location = new System.Drawing.Point(8, 57);
-            this.txt_significancia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_significancia.Margin = new System.Windows.Forms.Padding(4);
             this.txt_significancia.Name = "txt_significancia";
             this.txt_significancia.ReadOnly = true;
             this.txt_significancia.Size = new System.Drawing.Size(64, 22);
@@ -138,34 +140,10 @@ namespace TP1_Sim_GrupoE
             "10",
             "12"});
             this.cmb_intervalos_chi.Location = new System.Drawing.Point(8, 23);
-            this.cmb_intervalos_chi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmb_intervalos_chi.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_intervalos_chi.Name = "cmb_intervalos_chi";
             this.cmb_intervalos_chi.Size = new System.Drawing.Size(64, 24);
             this.cmb_intervalos_chi.TabIndex = 9;
-            // 
-            // gb_iteraciones
-            // 
-            this.gb_iteraciones.BackColor = System.Drawing.Color.DarkSalmon;
-            this.gb_iteraciones.Controls.Add(this.dg_iteraciones_chi);
-            this.gb_iteraciones.Location = new System.Drawing.Point(628, 15);
-            this.gb_iteraciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gb_iteraciones.Name = "gb_iteraciones";
-            this.gb_iteraciones.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gb_iteraciones.Size = new System.Drawing.Size(443, 420);
-            this.gb_iteraciones.TabIndex = 15;
-            this.gb_iteraciones.TabStop = false;
-            this.gb_iteraciones.Text = "Iteraciones";
-            // 
-            // dg_iteraciones_chi
-            // 
-            this.dg_iteraciones_chi.BackgroundColor = System.Drawing.Color.DarkSalmon;
-            this.dg_iteraciones_chi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg_iteraciones_chi.Location = new System.Drawing.Point(8, 42);
-            this.dg_iteraciones_chi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dg_iteraciones_chi.Name = "dg_iteraciones_chi";
-            this.dg_iteraciones_chi.RowHeadersWidth = 51;
-            this.dg_iteraciones_chi.Size = new System.Drawing.Size(427, 370);
-            this.dg_iteraciones_chi.TabIndex = 8;
             // 
             // gb_chi
             // 
@@ -177,9 +155,9 @@ namespace TP1_Sim_GrupoE
             this.gb_chi.Controls.Add(this.label4);
             this.gb_chi.Controls.Add(this.label6);
             this.gb_chi.Location = new System.Drawing.Point(16, 260);
-            this.gb_chi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gb_chi.Margin = new System.Windows.Forms.Padding(4);
             this.gb_chi.Name = "gb_chi";
-            this.gb_chi.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gb_chi.Padding = new System.Windows.Forms.Padding(4);
             this.gb_chi.Size = new System.Drawing.Size(215, 134);
             this.gb_chi.TabIndex = 15;
             this.gb_chi.TabStop = false;
@@ -245,24 +223,44 @@ namespace TP1_Sim_GrupoE
             this.label6.TabIndex = 10;
             this.label6.Text = "X Calculado: ";
             // 
+            // grafico
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.grafico.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.grafico.Legends.Add(legend1);
+            this.grafico.Location = new System.Drawing.Point(364, 26);
+            this.grafico.Name = "grafico";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Esperada";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Observada";
+            this.grafico.Series.Add(series1);
+            this.grafico.Series.Add(series2);
+            this.grafico.Size = new System.Drawing.Size(930, 540);
+            this.grafico.TabIndex = 16;
+            this.grafico.Text = "chart1";
+            // 
             // chi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::TP1_Sim_GrupoE.Properties.Resources.the_simpson_s_living_room_zoom_background_design_template_0a144384f561d786222db3f214a8042b_screen;
-            this.ClientSize = new System.Drawing.Size(1081, 448);
+            this.ClientSize = new System.Drawing.Size(1323, 647);
+            this.Controls.Add(this.grafico);
             this.Controls.Add(this.gb_chi);
-            this.Controls.Add(this.gb_iteraciones);
             this.Controls.Add(this.gb_parametros_chi);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "chi";
             this.Text = "chi";
+            this.Load += new System.EventHandler(this.chi_Load);
             this.gb_parametros_chi.ResumeLayout(false);
             this.gb_parametros_chi.PerformLayout();
-            this.gb_iteraciones.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dg_iteraciones_chi)).EndInit();
             this.gb_chi.ResumeLayout(false);
             this.gb_chi.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grafico)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -276,8 +274,6 @@ namespace TP1_Sim_GrupoE
         private System.Windows.Forms.TextBox txt_significancia;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_gradoslibertad;
-        private System.Windows.Forms.GroupBox gb_iteraciones;
-        private System.Windows.Forms.DataGridView dg_iteraciones_chi;
         private System.Windows.Forms.Button btn_testchi;
         private System.Windows.Forms.GroupBox gb_chi;
         private System.Windows.Forms.Label txt_hipotesis;
@@ -286,5 +282,6 @@ namespace TP1_Sim_GrupoE
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataVisualization.Charting.Chart grafico;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TP1_Sim_GrupoE.Clases
 {
-    class Frecuencia
+    public class Frecuencia
     {
         public int indice { get; set; }
         public Double LimInferior { get; set; }
