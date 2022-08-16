@@ -6,7 +6,7 @@ using TP1_Sim_GrupoE.Clases;
 
 namespace TP1_Sim_GrupoE
 {
-    
+
 
     public partial class Metodo_Libre : Form
     {
@@ -17,7 +17,7 @@ namespace TP1_Sim_GrupoE
         private static int n;
         private static int opcionCombo;
         private static int incluir1_libre;
-        private static int intervalos;
+        public static int intervalos;
         private static int semillaAnterior = 34;
         bool flag = true;
         private List<NumeroAleatorio> listaAleatorios { get; set; }
@@ -53,17 +53,18 @@ namespace TP1_Sim_GrupoE
             {
                 case 0:
                     listaAleatorios.Add(congruencialMixto(listaAleatorios.Count));
-                    listaRandom.Add(listaAleatorios[listaAleatorios.Count].random);
                     break;
                 case 1:
                     listaAleatorios.Add(congruencialMultiplicativo(listaAleatorios.Count));
-                    listaRandom.Add(listaAleatorios[listaAleatorios.Count].random);
                     break;
                 case 2:
                     listaAleatorios.Add(congruencialAditivo(listaAleatorios.Count));
-                    listaRandom.Add(listaAleatorios[listaAleatorios.Count].random);
+                    break;
+                case 3:
+                    listaAleatorios.Add(aleatorioLenguaje(listaAleatorios.Count));
                     break;
             }
+            listaRandom.Add(listaAleatorios[listaAleatorios.Count - 1].random);
             dg_libre.DataSource = null;
             dg_libre.DataSource = listaAleatorios;
             calcularIntervalos();
@@ -74,7 +75,14 @@ namespace TP1_Sim_GrupoE
             limpiarValores();
             habilitarBotonesCalcular(false);
         }
-
+        private void btn_sugerido_Click_1(object sender, EventArgs e)
+        {
+            txt_a.Text = "19";
+            txt_c.Text = "7";
+            txt_semilla.Text = "37";
+            txt_m.Text = "53";
+            txt_tamañoMuestra_libre.Text = "20";
+        }
         private void btn_20nuevos_libre_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < 20; i++)
@@ -83,18 +91,18 @@ namespace TP1_Sim_GrupoE
                 {
                     case 0:
                         listaAleatorios.Add(congruencialMixto(listaAleatorios.Count));
-                        listaRandom.Add(listaAleatorios[listaAleatorios.Count-1].random);
                         break;
                     case 1:
                         listaAleatorios.Add(congruencialMultiplicativo(listaAleatorios.Count));
-                        listaRandom.Add(listaAleatorios[listaAleatorios.Count-1].random);
                         break;
                     case 2:
                         listaAleatorios.Add(congruencialAditivo(listaAleatorios.Count));
-                        listaRandom.Add(listaAleatorios[listaAleatorios.Count-1].random);
+                        break;
+                    case 3:
+                        listaAleatorios.Add(aleatorioLenguaje(listaAleatorios.Count));
                         break;
                 }
-
+                listaRandom.Add(listaAleatorios[listaAleatorios.Count - 1].random);
             }
             dg_libre.DataSource = null;
             dg_libre.DataSource = listaAleatorios;
@@ -112,18 +120,18 @@ namespace TP1_Sim_GrupoE
                 {
                     case 0:
                         listaAleatorios.Add(congruencialMixto(listaAleatorios.Count));
-                        listaRandom.Add(listaAleatorios[listaAleatorios.Count].random);
                         break;
                     case 1:
                         listaAleatorios.Add(congruencialMultiplicativo(listaAleatorios.Count));
-                        listaRandom.Add(listaAleatorios[listaAleatorios.Count].random);
                         break;
                     case 2:
                         listaAleatorios.Add(congruencialAditivo(listaAleatorios.Count));
-                        listaRandom.Add(listaAleatorios[listaAleatorios.Count].random);
+                        break;
+                    case 3:
+                        listaAleatorios.Add(aleatorioLenguaje(listaAleatorios.Count));
                         break;
                 }
-
+                listaRandom.Add(listaAleatorios[listaAleatorios.Count-1].random);
             }
             ultimoElemento.Add(listaAleatorios[listaAleatorios.Count - 1]);
             dg_libre.DataSource = null;
@@ -133,18 +141,29 @@ namespace TP1_Sim_GrupoE
         {
             condicionesInicialesMetodo();
         }
+        //LLAMADO AL GRAFICO
+        private void btn_graficar_libre_Click(object sender, EventArgs e)
+        {
+            chi chi = new chi();
+            chi.Show();
+        }
         #endregion
         #region "Logica"
         private void leerValores()
         {
             //Lee todos los valores
-            x = int.Parse(txt_semilla.Text);
-            a = int.Parse(txt_a.Text);
+
+            if (cmb_metodo.SelectedIndex != 3)
+            {
+                x = int.Parse(txt_semilla.Text);
+                m = int.Parse(txt_m.Text);
+            }
 
             if (cmb_metodo.SelectedIndex == 0)
                 c = int.Parse(txt_c.Text);
+            if (cmb_metodo.SelectedIndex != 2 && cmb_metodo.SelectedIndex !=3)
+                a = int.Parse(txt_a.Text);
 
-            m = int.Parse(txt_m.Text);
             n = int.Parse(txt_tamañoMuestra_libre.Text);
             opcionCombo = cmb_metodo.SelectedIndex;
             intervalos = int.Parse(txt_intervalos_libre.Text);
@@ -165,22 +184,33 @@ namespace TP1_Sim_GrupoE
                 {
                     case 0:
                         listaAleatorios.Add(congruencialMixto(i));
-                        listaRandom.Add(listaAleatorios[i].random);
                         break;
                     case 1:
                         listaAleatorios.Add(congruencialMultiplicativo(i));
-                        listaRandom.Add(listaAleatorios[i].random);
                         break;
                     case 2:
                         listaAleatorios.Add(congruencialAditivo(i));
-                        listaRandom.Add(listaAleatorios[i].random);
+                        break;
+                    case 3:
+                        listaAleatorios.Add(aleatorioLenguaje(i));
                         break;
                 }
-
+                listaRandom.Add(listaAleatorios[i].random);
             }
             dg_libre.DataSource = null;
             dg_libre.DataSource = listaAleatorios;
 
+        }
+        private NumeroAleatorio aleatorioLenguaje(int i)
+        {
+            Random rnd = new Random(i);
+            double random = rnd.NextDouble();
+            random = (float)Math.Round(random, 4);
+            NumeroAleatorio numero = new NumeroAleatorio();
+            numero.orden = i + 1;
+            numero.semilla = 0;
+            numero.random =(float) random;
+            return numero;
         }
         private NumeroAleatorio congruencialMultiplicativo(int i)
         {
@@ -226,11 +256,11 @@ namespace TP1_Sim_GrupoE
         {
             btn_20nuevos_libre.Enabled = false;
             btn_calcular_libre.Enabled = false;
-            btn_chi_libre.Enabled = false;
             btn_graficar_libre.Enabled = false;
             btn_ultimo_libre.Enabled = false;
             btn_unomas_libre.Enabled = false;
             btn_limpiar_libre.Enabled = false;
+            btn_sugerido.Enabled = false;
             txt_a.Enabled = false;
             txt_c.Enabled = false;
             txt_intervalos_libre.Enabled = false;
@@ -243,6 +273,9 @@ namespace TP1_Sim_GrupoE
         {
             btn_calcular_libre.Enabled = true;
             btn_limpiar_libre.Enabled = true;
+            btn_sugerido.Enabled = false;
+            if (cmb_metodo.SelectedIndex == 0)
+                btn_sugerido.Enabled = true;
             txt_a.Enabled = true;
             txt_c.Enabled = true;
             txt_intervalos_libre.Enabled = true;
@@ -253,6 +286,18 @@ namespace TP1_Sim_GrupoE
             if (cmb_metodo.SelectedIndex == 1)
             {
                 txt_c.Enabled = false;
+            }
+            if (cmb_metodo.SelectedIndex == 2)
+            {
+                txt_a.Enabled = false;
+                txt_c.Enabled = false;
+            }
+            if (cmb_metodo.SelectedIndex == 3)
+            {
+                txt_a.Enabled = false;
+                txt_c.Enabled = false;
+                txt_m.Enabled = false;
+                txt_semilla.Enabled = false;
             }
         }
         private void limpiarValores()
@@ -275,6 +320,9 @@ namespace TP1_Sim_GrupoE
             btn_ultimo_libre.Enabled = band;
             btn_unomas_libre.Enabled = band;
             btn_graficar_libre.Enabled = band;
+            btn_sugerido.Enabled = false;
+            if (cmb_metodo.SelectedIndex == 0)
+            btn_sugerido.Enabled = true;
         }
         private bool ValidarCamposVacios()
         {
@@ -283,8 +331,13 @@ namespace TP1_Sim_GrupoE
                 MessageBox.Show("No se puede calcular con campos vacios");
                 return false;
             }
+            if ((cmb_metodo.SelectedIndex == 0 || cmb_metodo.SelectedIndex == 1) && txt_a.Text == String.Empty)
+            {
+                MessageBox.Show("No se puede calcular con campos vacios");
+                return false;
+            }
 
-            if (txt_a.Text == String.Empty || txt_intervalos_libre.Text == String.Empty || txt_m.Text == String.Empty || txt_semilla.Text == String.Empty || txt_tamañoMuestra_libre.Text == String.Empty)
+            if (txt_intervalos_libre.Text == String.Empty || ((txt_m.Text == String.Empty || txt_semilla.Text == String.Empty) && cmb_metodo.SelectedIndex != 3) || txt_tamañoMuestra_libre.Text == String.Empty)
             {
                 MessageBox.Show("No se puede calcular con campos vacios");
                 return false;
@@ -357,11 +410,6 @@ namespace TP1_Sim_GrupoE
 
         }
 
-        
-        private void btn_graficar_libre_Click(object sender, EventArgs e)
-        {
-            chi chi = new chi();
-            chi.Show();
-        }
+
     }
 }
