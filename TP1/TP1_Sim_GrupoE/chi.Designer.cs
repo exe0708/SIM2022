@@ -29,10 +29,10 @@ namespace TP1_Sim_GrupoE
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.gb_parametros_chi = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_gradoslibertad = new System.Windows.Forms.TextBox();
@@ -127,7 +127,7 @@ namespace TP1_Sim_GrupoE
             // txt_hipotesis
             // 
             this.txt_hipotesis.AutoSize = true;
-            this.txt_hipotesis.Location = new System.Drawing.Point(121, 97);
+            this.txt_hipotesis.Location = new System.Drawing.Point(77, 97);
             this.txt_hipotesis.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txt_hipotesis.Name = "txt_hipotesis";
             this.txt_hipotesis.Size = new System.Drawing.Size(20, 17);
@@ -157,7 +157,7 @@ namespace TP1_Sim_GrupoE
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 97);
+            this.label3.Location = new System.Drawing.Point(5, 97);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 17);
@@ -187,22 +187,22 @@ namespace TP1_Sim_GrupoE
             // grafico
             // 
             this.grafico.BackColor = System.Drawing.Color.DarkSalmon;
-            chartArea1.Name = "ChartArea1";
-            this.grafico.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.grafico.ChartAreas.Add(chartArea3);
             this.grafico.Dock = System.Windows.Forms.DockStyle.Right;
-            legend1.Name = "Legend1";
-            this.grafico.Legends.Add(legend1);
+            legend3.Name = "Legend1";
+            this.grafico.Legends.Add(legend3);
             this.grafico.Location = new System.Drawing.Point(393, 0);
             this.grafico.Name = "grafico";
             this.grafico.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Esperada";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Observada";
-            this.grafico.Series.Add(series1);
-            this.grafico.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Esperada";
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Observada";
+            this.grafico.Series.Add(series5);
+            this.grafico.Series.Add(series6);
             this.grafico.Size = new System.Drawing.Size(1147, 580);
             this.grafico.TabIndex = 16;
             this.grafico.Text = "Tabla de frecuencias";

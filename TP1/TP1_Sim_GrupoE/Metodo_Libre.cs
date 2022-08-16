@@ -66,6 +66,7 @@ namespace TP1_Sim_GrupoE
             }
             listaRandom.Add(listaAleatorios[listaAleatorios.Count - 1].random);
             dg_libre.DataSource = null;
+            dg_intervalos.DataSource = null;
             dg_libre.DataSource = listaAleatorios;
             calcularIntervalos();
 
@@ -105,6 +106,7 @@ namespace TP1_Sim_GrupoE
                 listaRandom.Add(listaAleatorios[listaAleatorios.Count - 1].random);
             }
             dg_libre.DataSource = null;
+            dg_intervalos.DataSource = null;
             dg_libre.DataSource = listaAleatorios;
             calcularIntervalos();
         }
@@ -135,6 +137,7 @@ namespace TP1_Sim_GrupoE
             }
             ultimoElemento.Add(listaAleatorios[listaAleatorios.Count - 1]);
             dg_libre.DataSource = null;
+            dg_intervalos.DataSource = null;
             dg_libre.DataSource = ultimoElemento;
         }
         private void cmb_metodo_SelectedIndexChanged(object sender, EventArgs e)
@@ -250,6 +253,69 @@ namespace TP1_Sim_GrupoE
             numero.random = random;
             return numero;
         }
+
+        private void calcularIntervalos()
+        {
+
+            listaRandom.Sort();
+            Int32 CantidadAleatorios = listaAleatorios.Count;
+            dg_intervalos.DataSource = null;
+            dg_intervalos.Refresh();
+            dg_intervalos.Rows.Clear();
+            listaFrecuenciaTabla.Clear();
+
+
+            Double Min = listaRandom.Min();
+            Double Max = listaRandom.Max();
+            Double Paso = (Max - Min) / intervalos;
+            Double Frecuencia = CantidadAleatorios / intervalos;
+            Double sumChi = 0;
+
+            for (int i = 0; i < intervalos; i++)
+            {
+                Frecuencia frecuencia = new Frecuencia();
+                frecuencia.LimInferior = Math.Round(Min, 4);
+                Double Maximo = Min + Paso;
+                frecuencia.LimSuperior = Math.Round(Maximo, 4);
+                if (i == intervalos)
+                {
+                    frecuencia.FrecObservada = listaRandom.Count(p => (p >= frecuencia.LimInferior)
+                    && (p <= frecuencia.LimSuperior));
+
+                }
+                else
+                {
+                    frecuencia.FrecObservada = listaRandom.Count(p => (p >= frecuencia.LimInferior)
+                    && (p < frecuencia.LimSuperior));
+                }
+                frecuencia.FrecEsperado = Frecuencia;
+                frecuencia.indice = i + 1;
+                var chiTemp = ((frecuencia.FrecEsperado - frecuencia.FrecObservada) * (frecuencia.FrecEsperado - frecuencia.FrecObservada)) / frecuencia.FrecEsperado;
+                frecuencia.Chi = Math.Round(chiTemp, 4);
+                sumChi = sumChi + frecuencia.Chi;
+                frecuencia.SumChi = Math.Round(sumChi, 4);
+                listaFrecuenciaTabla.Add(frecuencia);
+                Min = Min + Paso;
+            }
+
+            if (flag)
+            {
+                flag = false;
+            }
+            else
+            {
+
+                dg_intervalos.DataSource = null;
+                dg_intervalos.Rows.Clear();
+            }
+
+            dg_intervalos.DataSource = listaFrecuenciaTabla;
+            listaFrecuenciaGrafico = listaFrecuenciaTabla;
+            dg_intervalos.Refresh();
+
+           
+        }
+
         #endregion
         #region "Condiciones de inicio y Validaciones"
         private void condcionesIniciales()
@@ -347,68 +413,7 @@ namespace TP1_Sim_GrupoE
         }
         #endregion
 
-        private void calcularIntervalos()
-        {
-
-            listaRandom.Sort();
-            Int32 CantidadAleatorios = listaAleatorios.Count;
-            dg_intervalos.DataSource = null;
-            dg_intervalos.Refresh();
-            dg_intervalos.Rows.Clear();
-            listaFrecuenciaTabla.Clear();
-
-
-            Double Min = listaRandom.Min();
-            Double Max = listaRandom.Max();
-            Double Paso = (Max - Min) / intervalos;
-            Double Frecuencia = CantidadAleatorios / intervalos;
-            Double sumChi = 0;
-
-            for (int i = 0; i < intervalos; i++)
-            {
-                Frecuencia frecuencia = new Frecuencia();
-                frecuencia.LimInferior = Math.Round(Min, 4);
-                Double Maximo = Min + Paso;
-                frecuencia.LimSuperior = Math.Round(Maximo, 4);
-                if (i == intervalos)
-                {
-                    frecuencia.FrecObservada = listaRandom.Count(p => (p >= frecuencia.LimInferior)
-                    && (p <= frecuencia.LimSuperior));
-
-                }
-                else
-                {
-                    frecuencia.FrecObservada = listaRandom.Count(p => (p >= frecuencia.LimInferior)
-                    && (p < frecuencia.LimSuperior));
-                }
-                frecuencia.FrecEsperado = Frecuencia;
-                frecuencia.indice = i + 1;
-                var chiTemp = ((frecuencia.FrecEsperado - frecuencia.FrecObservada) * (frecuencia.FrecEsperado - frecuencia.FrecObservada)) / frecuencia.FrecEsperado;
-                frecuencia.Chi = Math.Round(chiTemp, 4);
-                sumChi = sumChi + frecuencia.Chi;
-                frecuencia.SumChi = Math.Round(sumChi, 4);
-                listaFrecuenciaTabla.Add(frecuencia);
-                Min = Min + Paso;
-            }
-
-            if (flag)
-            {
-                flag = false;
-            }
-            else
-            {
-
-                dg_intervalos.DataSource = null;
-                dg_intervalos.Rows.Clear();
-            }
-
-            dg_intervalos.DataSource = listaFrecuenciaTabla;
-            listaFrecuenciaGrafico = listaFrecuenciaTabla;
-            dg_intervalos.Refresh();
-
-            //lblSumChi.Text = "La sumatoria de Chi Cuadrado es: " + sumChi;
-
-        }
+        
 
 
     }

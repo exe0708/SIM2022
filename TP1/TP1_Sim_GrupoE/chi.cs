@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 using TP1_Sim_GrupoE.Clases;
 
 namespace TP1_Sim_GrupoE
@@ -23,21 +22,32 @@ namespace TP1_Sim_GrupoE
         private void hipotesis()
         {
             gradosLibertad = Metodo_Libre.intervalos - 1;
-            sumChi = Metodo_Libre.listaFrecuenciaGrafico[Metodo_Libre.listaFrecuenciaGrafico.Count-1].SumChi;
+            sumChi = Metodo_Libre.listaFrecuenciaGrafico[Metodo_Libre.listaFrecuenciaGrafico.Count - 1].SumChi;
+            txt_xcalculado.Text = sumChi.ToString();
             txt_gradoslibertad.Text = gradosLibertad.ToString();
-            if (sumChi <= valorTabulado[gradosLibertad - 1])
+            if (Metodo_Libre.intervalos < 39 && Metodo_Libre.intervalos>1)
             {
-                txt_hipotesis.Text = "<= NO RECHAZADA";
-                txt_hipotesis.ForeColor = System.Drawing.Color.DarkGreen;
-                txt_xcalculado.Text = sumChi.ToString();
-                txt_xtabulado.Text = valorTabulado[gradosLibertad - 1].ToString();
+                
+                txt_gradoslibertad.Text = gradosLibertad.ToString();
+                if (sumChi <= valorTabulado[gradosLibertad - 1])
+                {
+                    txt_hipotesis.Text = "<= NO RECHAZADA";
+                    txt_hipotesis.ForeColor = System.Drawing.Color.DarkGreen;
+                    txt_xcalculado.Text = sumChi.ToString();
+                    txt_xtabulado.Text = valorTabulado[gradosLibertad - 1].ToString();
+                }
+                else
+                {
+                    txt_hipotesis.Text = " > RECHAZADA";
+                    txt_hipotesis.ForeColor = System.Drawing.Color.Red;
+                    txt_xcalculado.Text = sumChi.ToString();
+                    txt_xtabulado.Text = valorTabulado[gradosLibertad - 1].ToString();
+                }
             }
             else
             {
-                txt_hipotesis.Text = " > RECHAZADA";
-                txt_hipotesis.ForeColor = System.Drawing.Color.Red;
-                txt_xcalculado.Text = sumChi.ToString();
-                txt_xtabulado.Text = valorTabulado[gradosLibertad - 1].ToString();
+                
+                txt_hipotesis.Text = "NO SE PUEDE CALCULAR HIPOTESIS";
             }
         }
         private void graficar(List<Frecuencia> listaFrecuenciaGrafico)
@@ -72,6 +82,6 @@ namespace TP1_Sim_GrupoE
         }
 
 
-        
+
     }
 }

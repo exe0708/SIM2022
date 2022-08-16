@@ -17,8 +17,6 @@ C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\bin\Debug\TP1_Sim_Gr
 C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\bin\Debug\TP1_Sim_GrupoE.pdb
 C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.csproj.AssemblyReference.cache
 C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.chi.resources
-C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.Metodo_Sugerido.resources
-C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.MetodoRND.resources
 C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.Metodo_Libre.resources
 C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.Principal.resources
 C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.Properties.Resources.resources
