@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Clases\Frecuencia.cs" />
     <Compile Include="Clases\NumeroAleatorio.cs" />
+    <Compile Include="Clases\VectorEstado.cs" />
     <Compile Include="Metodo_Libre.cs">
       <SubType>Form</SubType>
     </Compile>
