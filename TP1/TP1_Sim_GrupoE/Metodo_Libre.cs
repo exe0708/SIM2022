@@ -161,6 +161,7 @@ namespace TP1_Sim_GrupoE
         //-----------REALIZAR LLAMDO AL METODO SELECCIONADO--------------
         private void CalcularMetodos(int m, bool band)
         {
+            
             //Asignar calculo del metodo
             for (int i = 0; i < m; i++)
             {
@@ -506,7 +507,7 @@ namespace TP1_Sim_GrupoE
                 listaFrecuenciaTabla[i].FrecEsperado = frecuenciaEsperada;
                 listaFrecuenciaTabla[i].FrecObservada = frecuenciaObservada;
             }
-            MessageBox.Show("Test"+sumatoriaPorcentajes+"-----"+sumatoriaN);
+           
         }
         private float obtenerValorIntervalo(int i)
         {
@@ -540,6 +541,7 @@ namespace TP1_Sim_GrupoE
         private void generarIntervalos()
         {
             limites = new float[intervalos+1];
+            listaFrecuenciaTabla = new List<Frecuencia>();
             Double Maximo = 1;
             Double Minimo = 0;
             Double Paso = (Maximo - Minimo) / intervalos;

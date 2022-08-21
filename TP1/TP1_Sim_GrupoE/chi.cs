@@ -74,7 +74,9 @@ namespace TP1_Sim_GrupoE
                 grafico.Series["Observada"].Points.Add(observada);
                 grafico.Series["Esperada"].Points.Add(item.FrecEsperado);
                 grafico.Series["Esperada"].Points[item.indice].AxisLabel = cad1;
-                //grafico.Series["Observada"].Points[item.indice].AxisLabel = cad1;
+                grafico.Series["Observada"].Points[item.indice].AxisLabel = cad1;
+                grafico.Series["Esperada"].Points[item.indice].IsValueShownAsLabel = true;
+                grafico.Series["Observada"].Points[item.indice].IsValueShownAsLabel = true;
             }
 
         }
