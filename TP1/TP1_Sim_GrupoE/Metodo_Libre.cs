@@ -57,7 +57,7 @@ namespace TP1_Sim_GrupoE
                 dg_libre.Rows.Clear();
                 dg_libre.Columns.Clear();
                 generarIntervalos();
-                CalcularMetodos(20, false);
+                CalcularMetodos(n, false);
                 habilitarBotonesCalcular(true);
 
                 // calcularIntervalos();
@@ -123,6 +123,8 @@ namespace TP1_Sim_GrupoE
         //-----------LLAMADO PARA GRAFICAR--------------
         private void btn_graficar_libre_Click(object sender, EventArgs e)
         {
+            listaFrecuenciaGrafico = new List<Frecuencia>();
+            listaFrecuenciaGrafico = listaFrecuenciaTabla;
             chi chi = new chi();
             chi.Show();
         }
@@ -183,7 +185,6 @@ namespace TP1_Sim_GrupoE
                 saberIntervalo();
                 recalcularVector(vector.N.intervaloAnterior, false);
                 calcularP();
-                calcularChi();
                 vector.N_1 = vector.N;
                 orden--;
                 if (i < 20 && !band)
@@ -191,7 +192,8 @@ namespace TP1_Sim_GrupoE
                 if ((i == m - 2 || i == m - 1) && band)
                     agregarFila();
             }
-
+            calcularChi();
+            agregarFila();
         }
         //-----------MULTIPLICATIVO--------------
         private NumeroAleatorio congruencialMultiplicativo()
@@ -279,12 +281,13 @@ namespace TP1_Sim_GrupoE
         private void saberIntervalo()
         {
 
-            for (int i = 0; i < intervalos - 1; i++)
+            for (int i = 0; i < intervalos; i++)
             {
 
                 if (vector.N.random >= limites[i] && vector.N.random < limites[i + 1])
                 {
                     calcularIntervaloRandom(i + 1, true);
+                    break;
                 }
             }
 
@@ -488,15 +491,22 @@ namespace TP1_Sim_GrupoE
             float chi = 0;
             float frecuenciaEsperada = vector.N.orden / intervalos;
             float frecuenciaObservada = 0;
+            float sumatoriaPorcentajes = 0;
+            float sumatoriaN = 0;
             for (int i = 0; i < intervalos; i++)
             {
-                frecuenciaObservada = (obtenerValorIntervalo(i) * vector.N.orden) / 100;
+                float valorIntervalo = obtenerValorIntervalo(i);
+                frecuenciaObservada = ( valorIntervalo * vector.N.orden) / 100;
+                sumatoriaN = sumatoriaN +frecuenciaObservada;
+                sumatoriaPorcentajes = sumatoriaPorcentajes + valorIntervalo;
                 chi = ((frecuenciaEsperada - frecuenciaObservada) * (frecuenciaEsperada - frecuenciaObservada)) / frecuenciaEsperada;
                 chi = float.Parse(Math.Round(chi, 4).ToString());
                 vector.N.sumChi = vector.N.sumChi + chi;
                 vector.N.sumChi = float.Parse(Math.Round(vector.N.sumChi, 4).ToString());
+                listaFrecuenciaTabla[i].FrecEsperado = frecuenciaEsperada;
+                listaFrecuenciaTabla[i].FrecObservada = frecuenciaObservada;
             }
-           
+            MessageBox.Show("Test"+sumatoriaPorcentajes+"-----"+sumatoriaN);
         }
         private float obtenerValorIntervalo(int i)
         {
@@ -529,7 +539,7 @@ namespace TP1_Sim_GrupoE
         //-----------CREAR COLUMNAS DE LA TABLA--------------
         private void generarIntervalos()
         {
-            limites = new float[intervalos];
+            limites = new float[intervalos+1];
             Double Maximo = 1;
             Double Minimo = 0;
             Double Paso = (Maximo - Minimo) / intervalos;
@@ -557,8 +567,10 @@ namespace TP1_Sim_GrupoE
                 limites[i] = float.Parse((Math.Round(Minimo, 4).ToString()));
                 Minimo = Minimo + Paso;
                 dg_libre.Columns.Add(nombre_intervalo, nombre_comlumna);
-
+                frecuencia.indice = i;
+                listaFrecuenciaTabla.Add(frecuencia);
             }
+            limites[intervalos] = 1;
             dg_libre.Columns.Add("sumChi", "Sumatoria Chi");
             dg_libre.Columns.Add("sumatoria", "P(X)");
         }

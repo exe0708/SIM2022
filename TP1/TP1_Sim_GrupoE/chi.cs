@@ -70,13 +70,11 @@ namespace TP1_Sim_GrupoE
             {
 
                 var cad1 = item.LimInferior.ToString() + " - " + item.LimSuperior.ToString();
-
-                grafico.Series["Observada"].Points.Add(item.FrecObservada);
+                int observada = (int)item.FrecObservada;
+                grafico.Series["Observada"].Points.Add(observada);
                 grafico.Series["Esperada"].Points.Add(item.FrecEsperado);
-                grafico.Series["Esperada"].Points[item.indice - 1].AxisLabel = cad1;
-                grafico.Series["Observada"].Points[item.indice - 1].AxisLabel = cad1;
-                grafico.Series["Esperada"].Points[item.indice - 1].IsValueShownAsLabel = true;
-                grafico.Series["Observada"].Points[item.indice - 1].IsValueShownAsLabel = true;
+                grafico.Series["Esperada"].Points[item.indice].AxisLabel = cad1;
+                //grafico.Series["Observada"].Points[item.indice].AxisLabel = cad1;
             }
 
         }
