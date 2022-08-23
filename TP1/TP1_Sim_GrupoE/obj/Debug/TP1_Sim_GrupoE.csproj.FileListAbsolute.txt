@@ -24,3 +24,7 @@ C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_Gr
 C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.csproj.CoreCompileInputs.cache
 C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.exe
 C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.pdb
+C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\bin\Debug\TP1_Sim_GrupoE.exe.manifest
+C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\bin\Debug\TP1_Sim_GrupoE.application
+C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.exe.manifest
+C:\Users\Exe\Downloads\E-Facultad\SIM\TP\TP1\TP1_Sim_GrupoE\obj\Debug\TP1_Sim_GrupoE.application

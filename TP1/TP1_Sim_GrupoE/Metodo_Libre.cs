@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using TP1_Sim_GrupoE.Clases;
 
@@ -24,7 +23,7 @@ namespace TP1_Sim_GrupoE
         private static int incluir1_libre;
         public static int intervalos;
         float[] limites;
-        bool flag = true;
+
 
 
         private List<NumeroAleatorio> listaAleatorios { get; set; }
@@ -67,36 +66,56 @@ namespace TP1_Sim_GrupoE
         //-----------UNO MAS--------------
         private void btn_unomas_libre_Click(object sender, EventArgs e)
         {
-            if (orden > 0)
-            {
-                CalcularMetodos(1, false);
-            }
-            else
-            {
-                MessageBox.Show("Supero el tamaño de la muestra");
-            }
+            CalcularMetodos(1, true);
+            //if (orden > 0)
+            //{
+            //    CalcularMetodos(1, false);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Supero el tamaño de la muestra");
+            //}
         }
         //-----------20 MAS--------------
         private void btn_20nuevos_libre_Click(object sender, EventArgs e)
         {
-            if (orden > 0)
-            {
-                CalcularMetodos(20, false);
-            }
-            else
-            {
-                MessageBox.Show("Supero el tamaño de la muestra");
-            }
+            CalcularMetodos(20, false);
+            //if (orden > 0)
+            //{
+            //    CalcularMetodos(20, false);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Supero el tamaño de la muestra");
+            //}
         }
         private void btn_ultimo_libre_Click(object sender, EventArgs e)
         {
-            if (orden > 0)
+            CalcularMetodos(10000, true);
+            //if (orden > 0)
+            //{
+            //    
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Supero el tamaño de la muestra");
+            //}
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ValidarCamposVacios())
             {
-                CalcularMetodos(10000, true);
-            }
-            else
-            {
-                MessageBox.Show("Supero el tamaño de la muestra");
+                leerValores();
+                NumeroAleatorio numero = new NumeroAleatorio();
+                vector.N_1 = numero;
+                dg_libre.Rows.Clear();
+                dg_libre.Columns.Clear();
+                generarIntervalos();
+                CalcularMetodos(n, true);
+                habilitarBotonesCalcular(true);
+
+                // calcularIntervalos();
+
             }
         }
         //-----------DATOS SUGERIDOS--------------
@@ -161,7 +180,7 @@ namespace TP1_Sim_GrupoE
         //-----------REALIZAR LLAMDO AL METODO SELECCIONADO--------------
         private void CalcularMetodos(int m, bool band)
         {
-            
+
             //Asignar calculo del metodo
             for (int i = 0; i < m; i++)
             {
@@ -188,13 +207,17 @@ namespace TP1_Sim_GrupoE
                 calcularP();
                 vector.N_1 = vector.N;
                 orden--;
-                if (i < 20 && !band)
+                calcularChi();
+                if ((i < 20 && !band))
                     agregarFila();
-                if ((i == m - 2 || i == m - 1) && band)
+                if (band)
                     agregarFila();
             }
             calcularChi();
-            agregarFila();
+            if (!band)
+                agregarFila();
+
+
         }
         //-----------MULTIPLICATIVO--------------
         private NumeroAleatorio congruencialMultiplicativo()
@@ -357,6 +380,7 @@ namespace TP1_Sim_GrupoE
         private void calcularP()
         {
             vector.N.sumatoria = vector.N.intervalo1 + vector.N.intervalo2 + vector.N.intervalo3 + vector.N.intervalo4 + vector.N.intervalo5 + vector.N.intervalo6 + vector.N.intervalo7 + vector.N.intervalo8 + vector.N.intervalo9 + vector.N.intervalo10;
+            vector.N.sumatoria = float.Parse(Math.Round(vector.N.sumatoria, 0).ToString());
         }
         //-----------RECALCULAR VECTOR ESTADO-------------
         private void recalcularVector(int i, bool band)
@@ -497,8 +521,8 @@ namespace TP1_Sim_GrupoE
             for (int i = 0; i < intervalos; i++)
             {
                 float valorIntervalo = obtenerValorIntervalo(i);
-                frecuenciaObservada = ( valorIntervalo * vector.N.orden) / 100;
-                sumatoriaN = sumatoriaN +frecuenciaObservada;
+                frecuenciaObservada = (valorIntervalo * vector.N.orden) / 100;
+                sumatoriaN = sumatoriaN + frecuenciaObservada;
                 sumatoriaPorcentajes = sumatoriaPorcentajes + valorIntervalo;
                 chi = ((frecuenciaEsperada - frecuenciaObservada) * (frecuenciaEsperada - frecuenciaObservada)) / frecuenciaEsperada;
                 chi = float.Parse(Math.Round(chi, 4).ToString());
@@ -507,7 +531,7 @@ namespace TP1_Sim_GrupoE
                 listaFrecuenciaTabla[i].FrecEsperado = frecuenciaEsperada;
                 listaFrecuenciaTabla[i].FrecObservada = frecuenciaObservada;
             }
-           
+
         }
         private float obtenerValorIntervalo(int i)
         {
@@ -540,7 +564,7 @@ namespace TP1_Sim_GrupoE
         //-----------CREAR COLUMNAS DE LA TABLA--------------
         private void generarIntervalos()
         {
-            limites = new float[intervalos+1];
+            limites = new float[intervalos + 1];
             listaFrecuenciaTabla = new List<Frecuencia>();
             Double Maximo = 1;
             Double Minimo = 0;
@@ -579,69 +603,9 @@ namespace TP1_Sim_GrupoE
         //-----------AGREGAR FILA A GRILLA--------------
         private void agregarFila()
         {
-            dg_libre.Rows.Add(vector.N.orden, vector.N.semilla, vector.N.semilla2, vector.N.random, vector.N.intervalo1, vector.N.intervalo2, vector.N.intervalo3, vector.N.intervalo4, vector.N.intervalo5, vector.N.intervalo6, vector.N.intervalo7, vector.N.intervalo8, vector.N.intervalo9, vector.N.intervalo10, vector.N.sumChi,vector.N.sumatoria);
+            dg_libre.Rows.Add(vector.N.orden, vector.N.semilla, vector.N.semilla2, vector.N.random, vector.N.intervalo1, vector.N.intervalo2, vector.N.intervalo3, vector.N.intervalo4, vector.N.intervalo5, vector.N.intervalo6, vector.N.intervalo7, vector.N.intervalo8, vector.N.intervalo9, vector.N.intervalo10, vector.N.sumChi, vector.N.sumatoria);
         }
-        private void calcularIntervalos()
-        {
 
-            listaRandom.Sort();
-            Int32 CantidadAleatorios = listaAleatorios.Count;
-            dg_intervalos.DataSource = null;
-            dg_intervalos.Refresh();
-            dg_intervalos.Rows.Clear();
-            listaFrecuenciaTabla.Clear();
-
-
-            Double Min = listaRandom.Min();
-            Double Max = listaRandom.Max();
-            Double Paso = (Max - Min) / intervalos;
-            Double Frecuencia = CantidadAleatorios / intervalos;
-            Double sumChi = 0;
-
-            for (int i = 0; i < intervalos; i++)
-            {
-                Frecuencia frecuencia = new Frecuencia();
-                frecuencia.LimInferior = Math.Round(Min, 4);
-                Double Maximo = Min + Paso;
-                frecuencia.LimSuperior = Math.Round(Maximo, 4);
-                if (i == intervalos)
-                {
-                    frecuencia.FrecObservada = listaRandom.Count(p => (p >= frecuencia.LimInferior)
-                    && (p <= frecuencia.LimSuperior));
-
-                }
-                else
-                {
-                    frecuencia.FrecObservada = listaRandom.Count(p => (p >= frecuencia.LimInferior)
-                    && (p < frecuencia.LimSuperior));
-                }
-                frecuencia.FrecEsperado = Frecuencia;
-                frecuencia.indice = i + 1;
-                var chiTemp = ((frecuencia.FrecEsperado - frecuencia.FrecObservada) * (frecuencia.FrecEsperado - frecuencia.FrecObservada)) / frecuencia.FrecEsperado;
-                frecuencia.Chi = Math.Round(chiTemp, 4);
-                sumChi = sumChi + frecuencia.Chi;
-                frecuencia.SumChi = Math.Round(sumChi, 4);
-                listaFrecuenciaTabla.Add(frecuencia);
-                Min = Min + Paso;
-            }
-
-            if (flag)
-            {
-                flag = false;
-            }
-            else
-            {
-
-                dg_intervalos.DataSource = null;
-                dg_intervalos.Rows.Clear();
-            }
-
-            dg_intervalos.DataSource = listaFrecuenciaTabla;
-            listaFrecuenciaGrafico = listaFrecuenciaTabla;
-            dg_intervalos.Refresh();
-
-
-        }
 
         #endregion
         #region "Condiciones de inicio y Validaciones"
@@ -654,6 +618,7 @@ namespace TP1_Sim_GrupoE
             btn_ultimo_libre.Enabled = false;
             btn_unomas_libre.Enabled = false;
             btn_limpiar_libre.Enabled = false;
+            button1.Enabled = false;
             btn_sugerido.Enabled = false;
             txt_a.Enabled = false;
             txt_c.Enabled = false;
@@ -671,7 +636,9 @@ namespace TP1_Sim_GrupoE
         {
             btn_calcular_libre.Enabled = true;
             btn_limpiar_libre.Enabled = true;
+            button1.Enabled = true;
             btn_sugerido.Enabled = false;
+
             if (cmb_metodo.SelectedIndex == 0)
                 btn_sugerido.Enabled = true;
             txt_a.Enabled = true;
@@ -712,7 +679,8 @@ namespace TP1_Sim_GrupoE
             chk_incluir1_libre.Checked = false;
             cmb_metodo.SelectedIndex = -1;
             dg_libre.DataSource = null;
-            dg_intervalos.DataSource = null;
+            vector.N = new NumeroAleatorio();
+            vector.N_1 = new NumeroAleatorio();
             condcionesIniciales();
         }
         //-----------HABILITAR CONTROLES--------------
@@ -748,6 +716,7 @@ namespace TP1_Sim_GrupoE
             return true;
 
         }
+
 
 
 
