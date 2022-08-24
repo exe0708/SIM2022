@@ -42,7 +42,7 @@ namespace TP1_Sim_GrupoE
             this.btn_metodoLibre.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_metodoLibre.Image = ((System.Drawing.Image)(resources.GetObject("btn_metodoLibre.Image")));
             this.btn_metodoLibre.Location = new System.Drawing.Point(591, 473);
-            this.btn_metodoLibre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_metodoLibre.Margin = new System.Windows.Forms.Padding(4);
             this.btn_metodoLibre.Name = "btn_metodoLibre";
             this.btn_metodoLibre.Size = new System.Drawing.Size(191, 28);
             this.btn_metodoLibre.TabIndex = 0;
@@ -55,7 +55,7 @@ namespace TP1_Sim_GrupoE
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.BackgroundImage = global::TP1_Sim_GrupoE.Properties.Resources.Diamont_Select1;
             this.pictureBox2.Location = new System.Drawing.Point(524, 468);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(46, 46);
             this.pictureBox2.TabIndex = 7;
@@ -65,11 +65,11 @@ namespace TP1_Sim_GrupoE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::TP1_Sim_GrupoE.Properties.Resources.Diseño_sin_título__2_;
+            this.BackgroundImage = global::TP1_Sim_GrupoE.Properties.Resources.WhatsApp_Image_2022_08_23_at_8_42_32_PM;
             this.ClientSize = new System.Drawing.Size(1241, 644);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btn_metodoLibre);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Principal";
             this.Text = "Tp1_Sim_GrupoE";
             this.Load += new System.EventHandler(this.Principal_Load);

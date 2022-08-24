@@ -120,5 +120,15 @@ namespace TP1_Sim_GrupoE.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2022_08_23_at_8_42_32_PM {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2022-08-23 at 8.42.32 PM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
